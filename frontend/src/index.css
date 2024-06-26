@@ -10,7 +10,26 @@ body {
   background-attachment: fixed;
 }
 
-/* Custom scrollbar styles */
+/* Custom scrollbar styles for the whole document */
+body::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Track color */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5); /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Optional: Adding a border */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.7); /* Scrollbar thumb color on hover */
+}
+
+/* Custom scrollbar styles for elements with overflow */
 ::-webkit-scrollbar {
   width: 4px; /* Width of the scrollbar */
 }

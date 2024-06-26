@@ -76,9 +76,10 @@ export const loginUser = async (req, res) => {
       maxAge: 15 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({
-      message: "Login successful",
-    });
+    // Exclude password from user data
+    const { password: _, ...userData } = user._doc;
+
+    res.status(200).json(userData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

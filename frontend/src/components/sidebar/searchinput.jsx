@@ -1,9 +1,56 @@
+import { useState } from "react";
+import useConversation from "../../zustand/useConversation.jsx";
+import useGetConversation from "../../hook/useGetConversation.js";
+import toast from "react-hot-toast";
+import useGetSidebar from "../../hook/useGetSidebar.js";
+
 export default function SearchInput() {
+  const [search, setSearch] = useState("");
+  const { setSelectedConversation } = useConversation();
+  const { conversations } = useGetConversation();
+  const { toggleSidebar } = useGetSidebar();
+
+  const user = conversations.users;
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    if (!search) return;
+    if (search.length < 3) {
+      return toast.error("At least 3 characters should be inputted");
+    }
+    if (Array.isArray(user)) {
+      // Check if conversations is an array
+      const userConvo = user.find((c) =>
+        c.fullname.toLowerCase().includes(search.toLowerCase())
+      );
+      if (userConvo) {
+        setSelectedConversation(userConvo);
+        setSearch("");
+        toggleSidebar();
+      } else {
+        toast.error("No User Found");
+      }
+    } else {
+      toast.error("Conversations data is not available");
+    }
+  };
+
+  console.log(conversations);
+
   return (
     <div>
-      <div className="flex items-center justify-center">
+      <form
+        onSubmit={handelSubmit}
+        className="flex w-[270px] sm:w-fit items-center justify-center"
+      >
         <label className="input input-bordered flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Search" />
+          <input
+            type="text"
+            className="grow"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -17,8 +64,10 @@ export default function SearchInput() {
             />
           </svg>
         </label>
-        <button className="btn btn-active ml-3 btn-primary">Q</button>
-      </div>
+        <button type="submit" className="btn btn-active ml-3 btn-primary">
+          Q
+        </button>
+      </form>
     </div>
   );
 }

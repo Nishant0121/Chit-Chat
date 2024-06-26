@@ -4,48 +4,57 @@ import Message from "../model/message.model.js";
 export const SendMessage = async (req, res) => {
   try {
     const { message } = req.body;
-    const { id: reciverId } = req.params;
+    const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
     let conversation = await Conversation.findOne({
-      participents: { $all: [senderId, reciverId] },
+      participants: { $all: [senderId, receiverId] },
     });
 
     if (!conversation) {
       conversation = await Conversation.create({
-        participents: [senderId, reciverId],
+        participants: [senderId, receiverId],
       });
     }
 
     const newMessage = new Message({
       senderId,
-      reciverId,
+      receiverId,
       message,
     });
 
-    if (newMessage) {
-      conversation.messages.push(newMessage._id);
-    }
-
-    await conversation.save();
     await newMessage.save();
 
-    res.status(200).json({ message: "Message sent successfully" });
+    conversation.messages.push(newMessage._id);
+    await conversation.save();
+
+    res.status(200).json(newMessage); // Return the saved message
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 export const GetMessage = async (req, res) => {
   try {
-    const { id: userToChatId } = req.params;
+    const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
     const conversation = await Conversation.findOne({
-      participents: { $all: [senderId, userToChatId] },
+      participants: { $all: [senderId, receiverId] },
     }).populate("messages");
 
-    res.status(200).json(conversation.messages);
-  } catch (error) {}
+    if (!conversation) {
+      return res.status(200).send([]);
+    }
+
+    if (!conversation) return res.status(200).json([]);
+
+    const messages = conversation.messages;
+
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 };

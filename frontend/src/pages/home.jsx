@@ -16,7 +16,7 @@ export default function Home() {
   console.log(isSidebarOpen);
 
   return (
-    <div className="flex relative items-center justify-center w-[300px] h-[600px] sm:w-[400px] sm:h-full md:w-[500px] lg:w-fit md:h-full ">
+    <div className="flex relative items-center justify-center w-[300px] h-[570px] sm:w-[400px] sm:h-[590px] md:h-[600px] md:w-fit  ">
       <div
         className={`absolute ${
           isSidebarOpen ? "bottom-0" : "top-0"

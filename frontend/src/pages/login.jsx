@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/loder/loder";
-import { AuthContext } from "../context/authcontect";
+import { AuthContext } from "../context/authcontext";
 
 export default function Login() {
   const [inputs, setInputs] = useState({

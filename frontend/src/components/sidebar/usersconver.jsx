@@ -7,7 +7,7 @@ export default function UserConversation() {
   const users = conversations?.users || []; // Safely accessing users array
 
   return (
-    <div className="w-full flex flex-col justify-start items-center overflow-auto">
+    <div className="w-full text-black md:text-white flex flex-col justify-start items-center overflow-auto">
       {users.map((user, idx) => (
         <UserConvo
           key={user._id}
@@ -15,6 +15,7 @@ export default function UserConversation() {
           lastIdx={idx === users.length - 1}
         />
       ))}
+      <div className="divider px-3"></div>
 
       {loading ? <Loader /> : ""}
     </div>

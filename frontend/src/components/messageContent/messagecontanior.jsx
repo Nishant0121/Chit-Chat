@@ -3,7 +3,7 @@ import Messages from "./messages";
 import useConversation from "../../zustand/useConversation.jsx";
 import NoChatSelected from "./nochatselected.jsx";
 import { useEffect } from "react";
-import { useAuthContext } from "../../context/authcontect.jsx";
+import { useAuthContext } from "../../context/authcontext.jsx";
 
 export default function MessageCont() {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -15,14 +15,22 @@ export default function MessageCont() {
   }, [setSelectedConversation]);
 
   const { authUser } = useAuthContext();
-  console.log(authUser);
+  console.log(authUser._id);
 
   return (
     <div className=" w-[270px] md:min-w-[450px] h-full z-0 md:z-20">
       {selectedConversation ? (
         <div className="relative h-full w-[270px] md:min-w-[450px] flex m-0 md:ml-2 border-none md:border-l-2 p-0 md:pl-2 flex-col ">
-          <div className="absolute top-0 w-[270px] md:min-w-[450px]  bg-white p-2 shadow">
-            {selectedConversation.fullname}
+          <div className="absolute top-0 w-[270px] md:min-w-[450px] font-bold text-xl bg-transperent text-white pb-0 p-1 shadow">
+            <div className=" flex items-center justify-start ">
+              <img
+                className="w-10 h-10 rounded-full mr-2 "
+                src={selectedConversation.profilePic}
+                alt=""
+                srcSet=""
+              />
+              {selectedConversation.fullname}
+            </div>
           </div>
           <div className="flex-1 overflow-auto mt-12 mb-12">
             <Messages />

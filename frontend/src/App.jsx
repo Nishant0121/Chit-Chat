@@ -5,14 +5,14 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { Toaster } from "react-hot-toast";
 import { useContext } from "react";
-import { AuthContext } from "./context/authcontect";
+import { AuthContext } from "./context/authcontext";
 
 function App() {
   const { authUser } = useContext(AuthContext);
 
   return (
     <div className="flex items-center justify-center h-screen ">
-      <div className="m-3 p-2 md:p-6 bg-white-100 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 ">
+      <div className="m-3 p-2 md:p-6 bg-white-100 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40  shadow-lg ">
         <Routes>
           <Route
             path="/"

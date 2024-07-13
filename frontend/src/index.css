@@ -9,41 +9,26 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
-
-/* Custom scrollbar styles for the whole document */
-body::-webkit-scrollbar {
-  width: 4px; /* Width of the scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #491eff00;
+  scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1); /* Track color */
+/* WebKit browsers */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
 
-body::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.5); /* Scrollbar thumb color */
-  border-radius: 10px; /* Rounded corners */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Optional: Adding a border */
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.7); /* Scrollbar thumb color on hover */
-}
-
-/* Custom scrollbar styles for elements with overflow */
-::-webkit-scrollbar {
-  width: 4px; /* Width of the scrollbar */
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1); /* Track color */
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.5); /* Scrollbar thumb color */
-  border-radius: 10px; /* Rounded corners */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Optional: Adding a border */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.7); /* Scrollbar thumb color on hover */
+*::-webkit-scrollbar-thumb {
+  background-color: #491eff;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }

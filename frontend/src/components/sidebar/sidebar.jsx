@@ -6,7 +6,7 @@ import { CiLogout } from "react-icons/ci";
 import toast from "react-hot-toast";
 import { useContext, useState } from "react";
 import Loader from "../loder/loder";
-import { AuthContext } from "../../context/authcontect";
+import { AuthContext } from "../../context/authcontext";
 import useConversation from "../../zustand/useConversation";
 
 export default function Sidebar() {
@@ -41,10 +41,10 @@ export default function Sidebar() {
     <div
       className={`${
         isSidebarOpen ? "absolute" : "hidden"
-      } bg-white md:bg-transparent rounded-lg md:relative z-10 top-0  h-full w-full flex flex-col items-start justify-start`}
+      } bg-white  md:bg-transparent  rounded-lg md:relative z-10 top-0  h-full w-full flex flex-col items-start justify-start`}
     >
       <SearchInput />
-      <div className="divider px-3"></div>
+      <div className="divider px-3 mt-1 mb-1"></div>
       <UserConversation />
       <div
         className=" bg-slate-600 w-full p-2 rounded-lg absolute bottom-0 flex items-center"

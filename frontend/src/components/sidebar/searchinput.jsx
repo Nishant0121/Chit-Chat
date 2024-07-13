@@ -3,6 +3,7 @@ import useConversation from "../../zustand/useConversation.jsx";
 import useGetConversation from "../../hook/useGetConversation.js";
 import toast from "react-hot-toast";
 import useGetSidebar from "../../hook/useGetSidebar.js";
+import { FiSearch } from "react-icons/fi";
 
 export default function SearchInput() {
   const [search, setSearch] = useState("");
@@ -26,7 +27,9 @@ export default function SearchInput() {
       if (userConvo) {
         setSelectedConversation(userConvo);
         setSearch("");
-        toggleSidebar();
+        if (window.innerWidth < 786) {
+          toggleSidebar();
+        }
       } else {
         toast.error("No User Found");
       }
@@ -64,8 +67,11 @@ export default function SearchInput() {
             />
           </svg>
         </label>
-        <button type="submit" className="btn btn-active ml-3 btn-primary">
-          Q
+        <button
+          type="submit"
+          className="btn btn-active ml-3 text-white btn-primary"
+        >
+          <FiSearch className="h-7 w-7" />
         </button>
       </form>
     </div>

@@ -66,19 +66,14 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate JWT token
     const token = generateToken(user);
-
-    // Set cookie
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: true,
       maxAge: 15 * 24 * 60 * 60 * 1000,
     });
 
-    // Exclude password from user data
     const { password: _, ...userData } = user._doc;
-
     res.status(200).json(userData);
   } catch (error) {
     res.status(500).json({ message: error.message });

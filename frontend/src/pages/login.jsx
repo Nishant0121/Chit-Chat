@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "../components/loder/loder";
+import Loader from "../components/loder/loder.jsx";
 import { AuthContext } from "../context/authcontext";
 
 export default function Login() {
@@ -11,8 +11,8 @@ export default function Login() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { setAuthUser } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,24 +25,21 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(null); // Reset error state
     try {
       const response = await axios.post("/api/auth/login", inputs);
       console.log("Success:", response.data);
-      // Navigate to the dashboard after successful login
       navigate("/");
       localStorage.setItem("chat-user-info", JSON.stringify(response.data));
       setAuthUser(response.data);
       toast.success("Login successful!");
     } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
-      toast.error(
+      const errorMessage =
         error.response && error.response.data
-          ? error.response.data
-          : error.message
-      );
+          ? error.response.data.message
+          : error.message;
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -98,6 +95,7 @@ export default function Login() {
             />
           </label>
         </div>
+        {error && <div className="text-red-500 my-2">{error}</div>}
         <button
           disabled={loading}
           className="px-2 py-1.5 w-full my-2 bg-blue-300 text-black rounded-lg"
@@ -109,7 +107,6 @@ export default function Login() {
       <Link to="/register" className="btn btn-link">
         {"Don't"} have an account?
       </Link>
-      {loading ? <Loader /> : ""}
     </div>
   );
 }

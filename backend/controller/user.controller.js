@@ -34,7 +34,9 @@ export const followUser = async (req, res) => {
     // Simulate sending a follow request
     // In a real-world app, you'd send notifications or follow request logic here
     currentUser.followers.push(userToFollow); // Add the current user to the followers array
+    userToFollow.followers.push(currentUser); // Add the current user to the followers array
     await currentUser.save();
+    await userToFollow.save();
 
     res.status(200).json({ message: "Follow request sent successfully" });
   } catch (err) {

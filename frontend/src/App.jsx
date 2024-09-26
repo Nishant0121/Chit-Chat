@@ -12,7 +12,7 @@ function App() {
   const { authUser } = useContext(AuthContext);
 
   return (
-    <div className="flex items-center justify-center max-h-[100vh] w-[100vw] overflow-y-auto">
+    <div className="flex items-center justify-center min-h-[100vh] w-[100vw] overflow-y-auto">
       <div className="m-3 p-2 md:p-6 bg-white-100 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40  shadow-lg ">
         <Routes>
           <Route

@@ -17,7 +17,7 @@ export default function Messages() {
   console.log(messages);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full min-w-[100%]">
       <div className="flex flex-col items-start justify-start w-full h-full overflow-auto">
         {loading && (
           <div className="flex chat-start chat w-full flex-col items-start justify-between gap-4">

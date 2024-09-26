@@ -15,13 +15,12 @@ export default function MessageCont() {
   }, [setSelectedConversation]);
 
   const { authUser } = useAuthContext();
-  console.log(authUser._id);
 
   return (
-    <div className=" w-[270px] md:min-w-[450px] h-full z-0 md:z-20">
+    <div className=" w-full h-full z-0 md:z-20">
       {selectedConversation ? (
-        <div className="relative h-full w-[270px] md:min-w-[450px] flex m-0 md:ml-2 border-none md:border-l-2 p-0 md:pl-2 flex-col ">
-          <div className="absolute top-0 w-[270px] md:min-w-[450px] font-bold text-xl bg-transperent text-white pb-0 p-1 shadow">
+        <div className="relative  w-full h-[90vh] flex m-0 md:ml-2 border-none md:border-l-2 p-0 md:pl-2 flex-col ">
+          <div className="absolute top-0 w-full h-full font-bold text-xl bg-transperent text-white pb-0 p-1 shadow">
             <div className=" flex items-center justify-start ">
               <img
                 className="w-10 h-10 rounded-full mr-2 "

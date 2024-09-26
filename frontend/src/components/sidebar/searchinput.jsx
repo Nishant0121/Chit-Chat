@@ -38,13 +38,11 @@ export default function SearchInput() {
     }
   };
 
-  console.log(conversations);
-
   return (
     <div>
       <form
         onSubmit={handelSubmit}
-        className="flex w-[270px] sm:w-fit items-center justify-center"
+        className="flex w-full sm:px-3 sm:pt-3 items-center justify-center"
       >
         <label className="input input-bordered flex items-center gap-2">
           <input
@@ -69,7 +67,7 @@ export default function SearchInput() {
         </label>
         <button
           type="submit"
-          className="btn btn-active ml-3 text-white btn-primary"
+          className="btn p-1 sm:px-2 btn-active ml-2 text-white btn-primary"
         >
           <FiSearch className="h-7 w-7" />
         </button>

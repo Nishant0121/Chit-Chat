@@ -1,22 +1,17 @@
 import MessageCont from "../components/messageContent/messagecontanior";
 import Sidebar from "../components/sidebar/sidebar";
-import { useSocketContext } from "../context/socketcontext";
 import useConversation from "../zustand/useConversation";
 import { IoMenu } from "react-icons/io5";
 
 export default function Home() {
   const { isSidebarOpen, setIsSidebarOpen } = useConversation();
-  const { onlineUsers } = useSocketContext();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  console.log(onlineUsers);
-  console.log(isSidebarOpen);
-
   return (
-    <div className="flex relative items-center justify-center w-[300px] h-[570px] sm:w-[400px] sm:h-[590px] md:h-[600px] md:w-fit  ">
+    <div className="flex relative items-center justify-center min-w-[90vw] mx-auto min-h-[100vh]  ">
       <div
         className={`absolute ${
           isSidebarOpen ? "bottom-0" : "top-0"
@@ -27,7 +22,7 @@ export default function Home() {
       </div>
       <div
         className={`lg:flex ${
-          isSidebarOpen ? "block" : "hidden"
+          isSidebarOpen ? "flex" : "hidden"
         } h-full items-center justify-center lg:block`}
       >
         <Sidebar />

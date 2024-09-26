@@ -1,13 +1,13 @@
-import useGetConversation from "../../hook/useGetConversation";
+import useGetFollowed from "../../hook//useGetFollower";
 import Loader from "../loder/loder";
 import UserConvo from "./user";
 
 export default function UserConversation() {
-  const { loading, conversations } = useGetConversation();
-  const users = conversations?.users || []; // Safely accessing users array
+  const { followed, loading } = useGetFollowed();
+  const users = followed?.users || []; // Safely accessing users array
 
   return (
-    <div className="w-full text-black md:text-white flex flex-col justify-start items-center overflow-auto">
+    <div className="w-full text-black h-[90vh] md:text-white flex flex-col justify-start items-center overflow-y-auto">
       {users.map((user, idx) => (
         <UserConvo
           key={user._id}

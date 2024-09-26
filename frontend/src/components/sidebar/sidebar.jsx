@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SearchInput from "./searchinput";
 import UserConversation from "./usersconver";
@@ -41,10 +41,14 @@ export default function Sidebar() {
     <div
       className={`${
         isSidebarOpen ? "absolute" : "hidden"
-      } bg-white  md:bg-transparent  rounded-lg md:relative z-10 top-0  h-full w-full flex flex-col items-start justify-start`}
+      } bg-white  md:bg-transparent  rounded-lg md:relative z-10 top-0 left-0  h-[95vh] w-[90vw] sm:w-fit flex flex-col items-center justify-start`}
     >
+      <Link to="/allusers" className="p-2">
+        All Users
+      </Link>
       <SearchInput />
       <div className="divider px-3 mt-1 mb-1"></div>
+
       <UserConversation />
       <div
         className=" bg-slate-600 w-full p-2 rounded-lg absolute bottom-0 flex items-center"

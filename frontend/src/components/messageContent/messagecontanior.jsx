@@ -31,7 +31,7 @@ export default function MessageCont() {
               {selectedConversation.fullname}
             </div>
           </div>
-          <div className="flex-1 overflow-auto mt-12 mb-12">
+          <div className="flex-1 overflow-y-auto h-[90vh] z-20 mt-12 mb-12">
             <Messages />
           </div>
           <div className="absolute bottom-0 w-full">
